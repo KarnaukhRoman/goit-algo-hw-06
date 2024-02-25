@@ -4,16 +4,22 @@ class Field:
     def __init__(self, value):
         self.value = value
 
-    def __str__(self):
-        return str(self.value)
+    # def __str__(self):
+    #      return str(self.value)  
 
 class Name(Field):
-    # реалізація класу
-		pass
+   def __init__(self, name):
+     self.name = name
+                
 
 class Phone(Field):
     # реалізація класу
-		pass
+     def __init__(self, number):
+          if number.isdigit() and len(number)==10:
+               self.number = number
+          else:
+               raise ValueError
+        
 
 class Record:
     def __init__(self, name):
@@ -21,15 +27,35 @@ class Record:
         self.phones = []
 
     # реалізація класу
+    def add_phone(self, phone):
+        self.phones.append(Phone(phone))
+    
+    def edit_phone(self, old_phone, new_phone):
+         pass
+    
+    def find_phone(self, phone):
+         return [p.number for p in self.phones if p.number == phone]
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+        return f"Contact name: {self.name}, phones: {'; '.join(p.value for p in self.phones)}"
 
 class AddressBook(UserDict):
     # реалізація класу
 		pass
 
+nm = Name('Karnok')
+ph = Phone('0667961915')
 
+print(nm.name)
+print(ph.number)
+#print(f.name)
+john_record = Record("John")
+john_record.add_phone("1234567890")
+john_record.add_phone("5555555555")
+
+print(john_record)
+
+'''
 def input_error(func):
     def inner(*args, **kwargs):
         try:
@@ -110,3 +136,4 @@ def main():
 
 if __name__=="__main__":
     main()
+'''
