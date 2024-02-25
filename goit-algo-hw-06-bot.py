@@ -4,8 +4,8 @@ class Field:
     def __init__(self, value):
         self.value = value
 
-    # def __str__(self):
-    #      return str(self.value)  
+    def __str__(self):
+        return str(self.value)  
 
 class Name(Field):
    def __init__(self, name):
@@ -15,11 +15,10 @@ class Name(Field):
 class Phone(Field):
     # реалізація класу
      def __init__(self, number):
-          if number.isdigit() and len(number)==10:
-               self.number = number
-          else:
-               raise ValueError
-        
+         if len(number) != 10 or not number.isdigit():
+            raise ValueError("Невірний формат номеру телефону")
+         self.number = number
+       
 
 class Record:
     def __init__(self, name):
